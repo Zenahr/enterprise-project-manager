@@ -9,7 +9,7 @@
             <!-- <h5 class="card-title">Special title treatment</h5> -->
             <ul class="list-group list-striped">
                 @foreach($companies as $company)
-                <li class="list-group-item">{{ $company->name }}</li>
+                <li class="list-group-item"> <a href="/companies/{{ $company->id }}">{{ $company->name }}</a></li>
                 @endforeach
             </ul>
         </div>
