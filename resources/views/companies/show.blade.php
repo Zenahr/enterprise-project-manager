@@ -36,7 +36,18 @@
                 <h5 class="card-header">CRUD Actions</h5>
                 <div class="card-body">
                     <ol class="list-unstyled">
+                        <li><a href="/companies">All Companies</a></li>
                         <li><a href="/companies/{{ $company->id  }}/edit">Edit</a></li>
+                        <li><a href="/projects/create">Add Project</a></li>
+                        <li><a href="/company/create">Create New Company</a></li>
+
+
+
+                        <hr>
+
+
+
+
                         <li>
                         <a href="#" onclick="
                   var result = confirm('Are you sure you wish to delete this Company?');
