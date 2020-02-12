@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -74,8 +75,8 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
-        // $project = Project::where('id', $project->id)->first();
-        $project = Project::find($project->id);
+        $project = Project::where('id', $project->id)->first();
+        // $project = Project::find($project->id);
         return view('projects.show', ['project'=>$project]);
     }
 
