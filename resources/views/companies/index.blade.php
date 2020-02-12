@@ -3,7 +3,7 @@
 <div class="col-md-6 mx-auto col-lg-6">
     <div class="card ">
         <div class="card-header text-center bg-primary text-white">
-            <h3>Companies</h3> <a class="btn btn-secondary" href="/companies/create">Create New Company</a>
+            <h3>Companies</h3> <a class="btn btn-secondary" href="/companies/create">Create New</a>
         </div>
         <div class="card-body">
             <!-- <h5 class="card-title">Special title treatment</h5> -->

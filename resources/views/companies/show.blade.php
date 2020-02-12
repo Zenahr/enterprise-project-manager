@@ -40,6 +40,8 @@
                         <li><a href="/companies/{{ $company->id  }}/edit">Edit</a></li>
                         <li><a href="/projects/create">Add Project</a></li>
                         <li><a href="/companies/create">Create New Company</a></li>
+                        <li><a href="/projects/create" class="btn btn-primary">Add Project</a></li>
+                        
 
 
 
