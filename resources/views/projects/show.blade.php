@@ -9,8 +9,9 @@
     <div class="row">
         <!-- Post Content Column -->
         <div class="col-lg-8">
-            <div class="card my-4">
-                <h1 class="card-header">Comments</h1>
+
+        <div class="card my-4">
+                <h1 class="card-header">Projects</h1>
                 <div class="card-body">
                    {{-- @foreach($project->projects as $project)
                     <li class="list-group-item">
@@ -25,6 +26,36 @@
                 </div>
             </div>
 
+            <div class="card my-4">
+                <h1 class="card-header">Comments</h1>
+                <div class="card-body">
+                <form method="post" action="{{ route('comments.store') }}">
+                        {{ csrf_field() }}
+                      
+                        <input type="hidden" name="commentable_type" value="Project">
+                        <input type="hidden" name="commentable_id" value="{{$project->id}}">
+
+                        <div class="form-group">
+                            <label for="comment-content">Comment</label>
+                            <textarea type="text" placeholder="Enter comment" style="resize: vertical"
+                                id="comment-content" name="body" rows="4" spellcheck="false"
+                                class="form-control autosize-target text-left"> 
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment-content">Url (proof of finished work)</label>
+                            <textarea type="text" placeholder="Enter URL or screenshot" style="resize: vertical"
+                                id="comment-content" name="url" rows="4" spellcheck="false"
+                                class="form-control autosize-target text-left"> 
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                          <input type="submit" value="Add Comment" class="btn btn-primary">
+                        </div>
+                   </form>
+                </div>
+            </div>
+            
 
         </div>
 
