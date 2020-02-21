@@ -24,8 +24,6 @@
                     @endforeach
                 </div>
             </div>
-
-
         </div>
 
         <!-- Sidebar Widgets Column -->
