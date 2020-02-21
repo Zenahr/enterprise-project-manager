@@ -8,12 +8,12 @@
 <div class="container">
     <div class="row">
         <!-- Post Content Column -->
-        <div class="col-lg-8">
+        <div class="col-lg-9">
 
-        <div class="card my-4">
+            <div class="card my-4">
                 <h1 class="card-header">Projects</h1>
                 <div class="card-body">
-                   {{-- @foreach($project->projects as $project)
+                    {{-- @foreach($project->projects as $project)
                     <li class="list-group-item">
                         <h4>{{ $project->name }}</h4>
                     </li>
@@ -26,12 +26,12 @@
                 </div>
             </div>
 
-            <div class="card my-4">
-                <h1 class="card-header">Comments</h1>
+            <div class="card my-4 mb-4">
+                <h1 class="card-header">Join the Conversation</h1>
                 <div class="card-body">
-                <form method="post" action="{{ route('comments.store') }}">
+                    <form method="post" action="{{ route('comments.store') }}">
                         {{ csrf_field() }}
-                      
+
                         <input type="hidden" name="commentable_type" value="App\Project">
                         <input type="hidden" name="commentable_id" value="{{$project->id}}">
 
@@ -39,31 +39,92 @@
                             <label for="comment-content">Comment</label>
                             <textarea type="text" placeholder="Enter comment" style="resize: vertical"
                                 id="comment-content" name="body" rows="4" spellcheck="false"
-                                class="form-control autosize-target text-left" required> 
+                                class="form-control autosize-target text-left" required>
                             </textarea>
                         </div>
                         <div class="form-group">
                             <label for="comment-content">Url (proof of finished work)</label>
                             <textarea type="text" placeholder="Enter URL or screenshot" style="resize: vertical"
                                 id="comment-content" name="url" rows="4" spellcheck="false"
-                                class="form-control autosize-target text-left" required> 
+                                class="form-control autosize-target text-left" required>
                             </textarea>
                         </div>
                         <div class="form-group">
-                          <input type="submit" value="Add Comment" class="btn btn-primary">
+                            <input type="submit" value="Add Comment" class="btn btn-primary">
                         </div>
-                   </form>
+                    </form>
+                </div>
+
+
+
+                <div class="card my-4">
+                <h1 class="card-header">Comments</h1>
+                <div class="card-body">
+                @foreach($project->comments as $comment)
+                        <h2>{{ $comment->body }}</h2>
+                        <p class="text-danger">{{ $comment->url }}</p>
+                        <p><a href="/projects/{{ $project->id }}" class="btn btn-primary">View Project</a></p>
+                    @endforeach
+
+
+                    <div class="row">
+		<div class="">
+        
+            <!-- Fluid width widget -->        
+    	    <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-comment"></span> 
+                        Recent Comments
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="media-list">
+                    @foreach($project->comments as $comment)
+                        <li class="media">
+                            <div class="media-left">
+                                <img src="http://placehold.it/60x60" class="img-circle">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="user/{{ $comment->user->id }}">{{ $comment->user->first_name }} {{ $comment->user->last_name }}
+                                    {{ $comment->user->email }} </a>
+                                    <br>
+                                    <small>
+                                        commented on <a href="#">Post Title</a>
+                                    </small>
+                                </h4>
+                                <p>
+                                {{ $comment->body }}
+                                </p>
+                                Proof:
+                                <p>
+                                {{ $comment->url }}
+                                </p>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
+            <!-- End fluid width widget --> 
             
+		</div>
+	</div>
+                </div>
+            </div>
+
+            </div>
+
 
         </div>
 
-        <!-- Sidebar Widgets Column --> 
-        <div class="col-md-4">
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-3">
 
             <!-- Side Widget -->
-            <div class="card my-4">
+            <div class="card my-12">
                 <h5 class="card-header">CRUD Actions</h5>
                 <div class="card-body">
                     <ol class="list-unstyled">
@@ -72,7 +133,7 @@
                         <li><a href="/projects">My Projects</a></li>
                         <li><a href="/projects/create">Create New Project</a></li>
                         <li><a href="/projects/create" class="btn btn-primary">Add Project</a></li>
-                        
+
 
 
 
@@ -83,16 +144,17 @@
                         @if($project->user_id == Auth::user()->id)
                         <li>
 
-                        <a href="#" onclick="
+                            <a href="#" onclick="
                   var result = confirm('Are you sure you wish to delete this Project?');
                       if( result ){event.preventDefault(); document.getElementById('delete-form').submit();}">
-                            Delete
-                        </a>
+                                Delete
+                            </a>
 
-                        <form id="delete-form" action="{{ route('projects.destroy',[$project->id]) }}" method="POST" style="display: none;">
-                            <input type="hidden" name="_method" value="delete">
-                            {{ csrf_field() }}
-                        </form>
+                            <form id="delete-form" action="{{ route('projects.destroy',[$project->id]) }}" method="POST"
+                                style="display: none;">
+                                <input type="hidden" name="_method" value="delete">
+                                {{ csrf_field() }}
+                            </form>
                         </li>
                         @endif
 
