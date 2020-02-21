@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="jumbotron">
-    <h1 class="display-3">{{ $project->name }}</h1>
+    <h1 class="display-6">{{ $project->name }}</h1>
     <p class="lead">{{ $project->description }}</p>
 </div>
 
