@@ -70,7 +70,7 @@ class CompaniesController extends Controller
     {
         // $company = Company::where('id', $company->id)->first();
         $company = Company::find($company->id);
-        $comments = $project->comments;
+        $comments = $company->comments;
         return view('companies.show', ['company'=>$company, 'comments'=> $comments]);
     }
 
