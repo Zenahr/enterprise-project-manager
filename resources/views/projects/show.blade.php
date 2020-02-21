@@ -4,12 +4,12 @@
     <h1 class="display-3">{{ $project->name }}</h1>
     <p class="lead">{{ $project->description }}</p>
 </div>
+
 <!-- Page Content -->
 <div class="container">
     <div class="row">
         <!-- Post Content Column -->
-        <div class="col-lg-9">
-
+        <div class="col-lg-8">
             <div class="card my-4">
                 <h1 class="card-header">Projects</h1>
                 <div class="card-body">
@@ -57,71 +57,49 @@
 
 
 
-                <div class="card my-4">
-                <h1 class="card-header">Comments</h1>
-                <div class="card-body">
-                @foreach($project->comments as $comment)
-                        <h2>{{ $comment->body }}</h2>
-                        <p class="text-danger">{{ $comment->url }}</p>
-                        <p><a href="/projects/{{ $project->id }}" class="btn btn-primary">View Project</a></p>
-                    @endforeach
-
-
-                    <div class="row">
-		<div class="">
-        
-            <!-- Fluid width widget -->        
-    	    <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-comment"></span> 
-                        Recent Comments
-                    </h3>
+                <!-- Fluid width widget -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-comment"></span> 
+                            Recent Comments
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="media-list">
+                            @foreach($project->comments as $comment)
+                            <li class="media">
+                                <div class="media-left">
+                                    <img src="http://placehold.it/60x60" class="img-circle">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="user/{{ $comment->user->id }}">{{ $comment->user->first_name }}
+                                            {{ $comment->user->last_name }}
+                                            {{ $comment->user->email }} </a>
+                                        <br>
+                                        <p>created at {{ $comment->created_at }}</p>
+                                    </h4>
+                                    <p>
+                                        {{ $comment->body }}
+                                    </p>
+                                    Proof:
+                                    <p>
+                                        {{ $comment->url }}
+                                    </p>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <ul class="media-list">
-                    @foreach($project->comments as $comment)
-                        <li class="media">
-                            <div class="media-left">
-                                <img src="http://placehold.it/60x60" class="img-circle">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    <a href="user/{{ $comment->user->id }}">{{ $comment->user->first_name }} {{ $comment->user->last_name }}
-                                    {{ $comment->user->email }} </a>
-                                    <br>
-                                    <small>
-                                        commented on <a href="#">Post Title</a>
-                                    </small>
-                                </h4>
-                                <p>
-                                {{ $comment->body }}
-                                </p>
-                                Proof:
-                                <p>
-                                {{ $comment->url }}
-                                </p>
-                            </div>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-            <!-- End fluid width widget --> 
-            
-		</div>
-	</div>
-                </div>
-            </div>
+                <!-- End fluid width widget -->
 
             </div>
-
-
         </div>
 
-
         <!-- Sidebar Widgets Column -->
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <!-- Side Widget -->
             <div class="card my-12">
@@ -133,23 +111,14 @@
                         <li><a href="/projects">My Projects</a></li>
                         <li><a href="/projects/create">Create New Project</a></li>
                         <li><a href="/projects/create" class="btn btn-primary">Add Project</a></li>
-
-
-
-
                         <hr>
-
-
-
                         @if($project->user_id == Auth::user()->id)
                         <li>
-
                             <a href="#" onclick="
-                  var result = confirm('Are you sure you wish to delete this Project?');
-                      if( result ){event.preventDefault(); document.getElementById('delete-form').submit();}">
+              var result = confirm('Are you sure you wish to delete this Project?');
+                  if( result ){event.preventDefault(); document.getElementById('delete-form').submit();}">
                                 Delete
                             </a>
-
                             <form id="delete-form" action="{{ route('projects.destroy',[$project->id]) }}" method="POST"
                                 style="display: none;">
                                 <input type="hidden" name="_method" value="delete">
@@ -157,15 +126,11 @@
                             </form>
                         </li>
                         @endif
-
                         <!-- <li><a href="">Add Member</a></li> -->
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.row -->
-
 </div>
-<!-- /.container -->
 @endsection
