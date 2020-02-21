@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<script src="https://use.fontawesome.com/2241fb001a.js"></script>
 </head>
 
 <body>
@@ -54,7 +55,7 @@
                         @endif
                         @else
                         
-                        <a class="nav-link" href="{{ route('companies.index') }}">My Companies</a>
+                        <a class="nav-link" href="{{ route('companies.index') }}"><i class="fa fa-building"></i> My Companies</a>
                         <a class="nav-link" href="{{ route('projects.index') }}">Projects</a>
                         <a class="nav-link" href="{{ route('tasks.index') }}">Tasks</a>
 
